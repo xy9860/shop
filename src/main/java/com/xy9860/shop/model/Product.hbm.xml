@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-16 19:35:17 by Hibernate Tools 5.2.1.Final -->
+<hibernate-mapping>
+    <class name="com.xy9860.shop.model.Product" table="product" catalog="shop" optimistic-lock="version">
+        <id name="pid" type="java.lang.Integer">
+            <column name="pid" />
+            <generator class="identity" />
+        </id>
+        <property name="pname" type="string">
+            <column name="pname" length="20" />
+        </property>
+        <property name="price" type="big_decimal">
+            <column name="price" precision="8" />
+        </property>
+        <property name="pic" type="string">
+            <column name="pic" length="200" />
+        </property>
+        <property name="premark" type="string">
+            <column name="premark" />
+        </property>
+        <property name="pxremark" type="string">
+            <column name="pxremark" />
+        </property>
+        <property name="pdate" type="timestamp">
+            <column name="pdate" length="19" not-null="true" />
+        </property>
+        <property name="pcommend" type="java.lang.Boolean">
+            <column name="pcommend" />
+        </property>
+        <property name="popen" type="java.lang.Boolean">
+            <column name="popen" />
+        </property>
+        <!-- <property name="cid" type="java.lang.Integer">
+            <column name="cid" />
+        </property> -->
+        <many-to-one name="category" class="com.xy9860.shop.model.Category" column="cid"></many-to-one>
+    </class>
+</hibernate-mapping>

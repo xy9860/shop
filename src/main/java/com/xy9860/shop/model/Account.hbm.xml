@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-16 19:35:17 by Hibernate Tools 5.2.1.Final -->
+<hibernate-mapping>
+    <class name="com.xy9860.shop.model.Account" table="account" catalog="shop" optimistic-lock="version">
+        <id name="aid" type="java.lang.Integer">
+            <column name="aid" />
+            <generator class="identity" />
+        </id>
+        <property name="alogin" type="string">
+            <column name="alogin" length="20" />
+        </property>
+        <property name="aname" type="string">
+            <column name="aname" length="20" />
+        </property>
+        <property name="apass" type="string">
+            <column name="apass" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

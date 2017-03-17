@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//CN"
+   "http://struts.apache.org/dtds/struts-2.5.dtd">  <!-- 约束可以含有什么标签 -->
+
+<struts>  
+		<package name="default" namespace="/" extends="json-default" strict-method-invocation="false"><!-- strict-method-invocation="false" 启用通配符 -->
+			<action name="category_*"  method="{1}" class="categoryAction">
+				<result>/index.jsp</result>
+				<!-- 先添加json包,然后继承json-default -->
+				<result name="jsonMap" type="json">
+				<!-- 要转换成json格式的 map -->
+					<param name="root">pageMap</param>
+				<!-- 配置 过滤 不需要选项的设置    支持正则表达式
+					\d代表一个数字
+					+ 一个或多个
+					? 0或1
+					* 1或多
+					. 任意字符
+					[abc] 自定义 必须是abc中一个
+					! 取反
+				 -->
+					<param name="excludeProperties">
+						rows\[\d+\]\.account\.apass,
+						rows\[\d+\]\.account\.aname
+					</param>
+				</result>
+				<result name="stream" type="stream">
+					<param name="inputName">inputStream</param>
+				</result>
+			</action>
+			<action name="product_*"  method="{1}" class="productAction">
+				<result>/index.jsp</result>
+				<!-- 先添加json包,然后继承json-default -->
+				<result name="jsonMap" type="json">
+				<!-- 要转换成json格式的 map -->
+					<param name="root">pageMap</param>
+					 <param name="excludeProperties">
+						rows\[\d+\]\.category\.account
+						<!-- rows\[\d+\]\.category\.account -->
+					</param> 
+				</result>
+			</action>
+			<action name="account_*" class="accountAction" method="{1}">
+				<result name="index">/index.jsp</result>
+				<!--<allowed-methods>query</allowed-methods> 也可以使用这个方法允许方法执行 -->
+			</action>
+			<!-- 用来完成系统请求的转发   所有的请求都交给-->
+			<action name="send_*_*" class="sendAction">
+				<result name="send">/WEB-INF/{1}/{2}.jsp</result>
+			</action>
+		</package>
+</struts>  
