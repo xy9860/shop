@@ -5,18 +5,15 @@ import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.xy9860.shop.model.Account;
+import com.xy9860.shop.service.AccountService;
 
 @Controller
 @Scope("prototype")
 public class AccountAction extends BaseAction<Account> {
 
 	public String query(){
-		
-		for (Account account : accountService.query()) {
-			System.out.println(account);
-		}
-		
-		return "index";
+		jsonList=accountService.query();
+		return "jsonList";
 	}
 	
 }

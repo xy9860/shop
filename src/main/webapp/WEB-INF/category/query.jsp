@@ -83,7 +83,13 @@ $(function () {
 						showType:'slide'
 					});
 				}else{
-					
+					//完成弹出更新的页面
+					parent.$('#win').window({    
+						title:'更新类别',
+						width:400,    
+					    height:300,    
+					    content:'<iframe src="send_category_update.action" frameborder="0" width="100%" height="100%"></iframe>'
+					});
 				}
 			}
 		},'-',{
@@ -135,7 +141,7 @@ $(function () {
 				   						showType:'slide'
 				   					});
 			            		   $('#dg').datagrid('reload');
-					               $('#dg').datagrid('clearSelections');
+					               $('#dg').datagrid('clearSelections');//删除选中的记录 不然会出现 奇怪的故障
 			            	   }else{
 			            		   $.messager.show({
 			   						title:'错误提示',

@@ -42,6 +42,12 @@
 			</action>
 			<action name="account_*" class="accountAction" method="{1}">
 				<result name="index">/index.jsp</result>
+				<result name="jsonList" type="json">
+					<param name="root">jsonList</param>
+					<param name="excludeProperties">
+						\[\d+\]\.apass,\[\d+\]\.aname
+					</param> 
+				</result>
 				<!--<allowed-methods>query</allowed-methods> 也可以使用这个方法允许方法执行 -->
 			</action>
 			<!-- 用来完成系统请求的转发   所有的请求都交给-->

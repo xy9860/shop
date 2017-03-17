@@ -3,6 +3,7 @@ package com.xy9860.shop.action;
 import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -48,7 +49,9 @@ public class BaseAction<T> extends ActionSupport implements SessionAware ,Applic
 
 	protected Integer page;//这两个是分页所需要的 两个值
 	protected Integer rows;
-	protected Map<String, Object> pageMap=null;
+	
+	protected Map<String, Object> pageMap=null;//分页数据存储的 map
+	protected List<T> jsonList=null;
 	
 	protected String ids;//获取的需要操作的多个id
 	protected InputStream inputStream;//设置 返回为流的方式
@@ -122,6 +125,9 @@ public class BaseAction<T> extends ActionSupport implements SessionAware ,Applic
 	}
 	public void setInputStream(InputStream inputStream) {
 		this.inputStream = inputStream;
+	}
+	public List<T> getJsonList() {
+		return jsonList;
 	}
 
 }
