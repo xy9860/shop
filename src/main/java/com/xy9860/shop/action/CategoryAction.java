@@ -30,6 +30,10 @@ public class CategoryAction extends BaseAction<Category> {
 		
 		return "stream";
 	}
+	
+	public void save(){
+		categoryService.save(model);
+	}
 	/*private Category category;*/
 //	private CategoryService categoryService;
 	/*public void setCategory(Category category) {

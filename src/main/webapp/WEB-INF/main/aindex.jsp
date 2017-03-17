@@ -37,6 +37,7 @@
 			//判断前后边是不是有相应的tab
 			var text=$(this).text();//获得点击的超链接的文本
 			var href=$(this).attr("title");//获得 点击带过来的链接
+			var id=$(this).attr("id");//获得 点击带过来的链接
 			if($("#tt").tabs("exists",text)){//判断tab存在不存在
 				$("#tt").tabs("select",text);//选中一个面板
 			}else{
@@ -45,7 +46,7 @@
 					closable:true,//配置面板关闭按钮
 					//content:'正文内容'  测试使用直接植入 内容
 					//href:href//这里加载的网页只能加载body里面的内容
-					content:'<iframe src='+href+' frameborder="0" width="100%" height="100%"></iframe>'//使用内联框架的方式显示
+					content:'<iframe src='+href+' title='+id+' frameborder="0" width="100%" height="100%"></iframe>'//使用内联框架的方式显示
 				});//添加一个面板
 			}
 		});
@@ -63,8 +64,8 @@
 		<div id="menu" class="easyui-accordion" data-options="fit:true">
 			<div title="基本操作">
 				<ul>
-					<li><a href="#" title="send_category_query.action">类别管理</a></li>
-					<li><a href="#" title="send_product_query.action">商品管理</a></li>
+					<li><a href="#" title="send_category_query.action" id="category">类别管理</a></li>
+					<li><a href="#" title="send_product_query.action" id="product">商品管理</a></li>
 				</ul>
 			</div>
 			<div title="高级操作">

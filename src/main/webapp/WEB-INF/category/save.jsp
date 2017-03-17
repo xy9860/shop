@@ -28,22 +28,19 @@
 					//验证通过  提交数据
 					$.messager.progress();	// 显示进度条
 					$('#ff').form('submit', {//调用submit提交数据
-						url: '',
-						onSubmit: function(){
-							var isValid = $(this).form('validate');
-							if (!isValid){
-								$.messager.progress('close');	// 如果表单是无效的则隐藏进度条
-							}
-							return isValid;	// 返回false终止表单提交
-						},
+						url:'category_save.action',
 						success: function(){
 							$.messager.progress('close');	// 如果提交成功则隐藏进度条
+							//关闭当前窗体
+							parent.$("#win").window("close");
+							//刷新数据表
+							//jq对象不兼容//parent.$("iframe[title='category']").contents().find("#dg").datagrid('reload');
+							//不能直接选择easyui//parent.$("iframe[title='category']").$("#dg").datagrid('reload');
+							//使用dom对象  向下强转 dom兼容高
+							parent.$("iframe[title='category']").get(0).contentWindow.$("#dg").datagrid('reload');
 						}
 					});
 
-
-				}else{
-					alert(false);
 				}
 			});
 		});
@@ -59,7 +56,7 @@
 	    <div>   
 	        <label for="chot"></label>   
 	        <input type="radio" name="chot" value="true" checked="checked" /> 热点 
-	     	<input type="radio" name="chot" value="true" /> 非热点
+	     	<input type="radio" name="chot" value="false" /> 非热点
 	    </div>
 	    <br>
 		<div>   

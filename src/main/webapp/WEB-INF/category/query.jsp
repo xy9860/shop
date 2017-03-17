@@ -71,7 +71,21 @@ $(function () {
 		},'-',{
 			iconCls: 'icon-edit',
 			text:'更新类别',
-			handler: function(){alert('帮助按钮');}
+			handler: function(){
+				//判断是否有选中
+				var rows=$('#dg').datagrid("getSelections");//返回被选中的行 如果没有任何行被选中返回 空数组
+				if(rows.length!=1){
+					//提示没有选中
+					$.messager.show({
+						title:'错误提示',
+						msg:'请选择一条语句',
+						timeout:3000,
+						showType:'slide'
+					});
+				}else{
+					
+				}
+			}
 		},'-',{
 			iconCls: 'icon-remove',
 			text:'删除类别',
@@ -120,7 +134,7 @@ $(function () {
 				   						timeout:3000,
 				   						showType:'slide'
 				   					});
-			            		   $('#dg').datagrid('load');
+			            		   $('#dg').datagrid('reload');
 					               $('#dg').datagrid('clearSelections');
 			            	   }else{
 			            		   $.messager.show({
