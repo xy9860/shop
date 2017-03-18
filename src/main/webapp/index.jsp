@@ -8,7 +8,7 @@
 </head>
 <body>
 	<a href="send_main_aindex.action">直接到后台 ui版本</a><br />
-	<a href="send_main_index.action">直接到后台 framset版本</a><br />
+<%-- 	<a href="send_main_index.action">直接到后台 framset版本</a><br />
 	<a href="${shop }/category_updata.action?category.type=儿童&category.id=1&category.hot=false">updata测试ssh环境</a>
 	<a href="category_save.action">save测速struts和spring环境</a><br />
 	<a href="category_query.action">查询所有类别</a><br />
@@ -25,7 +25,7 @@
 	<c:forEach items="${applicationScope.categorys}" var="category">application
 		${category.cid}|${category.type}|${category.hot}<br />
 		<hr>
-	</c:forEach>
+	</c:forEach> --%>
 	
 </body>
 </html>

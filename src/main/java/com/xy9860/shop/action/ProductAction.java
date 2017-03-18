@@ -1,5 +1,6 @@
 package com.xy9860.shop.action;
 
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,4 +22,19 @@ public class ProductAction extends BaseAction<Product> {
 		return "jsonMap";
 	}
 	
+public String deleteByIds(){
+		
+		productService.deleteByIds(ids);
+		inputStream=new ByteArrayInputStream("true".getBytes());//返回为 true 
+		
+		return "stream";
+	}
+	
+	public void save(){
+		productService.save(model);
+	}
+	
+	public void update(){
+		productService.update(model);
+	}
 }

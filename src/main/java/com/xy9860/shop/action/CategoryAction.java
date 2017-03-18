@@ -24,7 +24,6 @@ public class CategoryAction extends BaseAction<Category> {
 	
 	public String deleteByIds(){
 		
-		System.out.println(ids);
 		categoryService.deleteByIds(ids);
 		inputStream=new ByteArrayInputStream("true".getBytes());//返回为 true 
 		

@@ -14,7 +14,7 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
 	public List<Product> queryJoinCategory(String pname, int page, int rows) {
 		//两次级联 需要查两次 不然就会报 no session 异常
 		//String hql="FROM Product p LEFT JOIN FETCH p.category.account JOIN FETCH p.category WHERE p.pname like ?";//这个多次懒依赖
-		String hql="FROM Product p LEFT JOIN FETCH p.category WHERE p.pname like ?";
+		String hql="FROM Product p LEFT JOIN FETCH  p.category LEFT JOIN FETCH p.category.account WHERE p.pname like ?";
 		return getSession().createQuery(hql).setParameter(0, "%"+pname+"%").setFirstResult((page-1)*rows).setMaxResults(rows).list();
 	}
 
@@ -23,5 +23,31 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
 		return (Long)getSession().createQuery(hql).setParameter(0, "%"+pname+"%").uniqueResult();
 	}
 	
+	public void deleteByIds(String ids) {
+		// TODO Auto-generated method stub
+		String hql="DELETE FROM Product WHERE id IN ("+ids+")";
+		getSession().createQuery(hql).executeUpdate();
+	}
+/*
+	public List<Category> queryJoinAccount(String ctype, int page, int rows) {
+		return getSession().createQuery("FROM Category c LEFT JOIN FETCH c.account WHERE c.type like ?")
+				.setParameter(0, "%"+type+"%").list();//没有分页的写法
+		String hql="FROM Category c LEFT JOIN FETCH c.account WHERE c.ctype like ?";
+		return getSession().createQuery(hql).setParameter(0, "%"+ctype+"%").setFirstResult((page-1)*rows).setMaxResults(rows).list();
+		//显示分页
+		//加入FETCH 让他抓取后 将结果集 放进 Account
+		//return getSession().createQuery("from Category").list();
+	}
+
+	public Long getCount(String ctype) {
+		String hql="SELECT count(c) FROM Category c WHERE c.ctype like ?";
+		return (Long)getSession().createQuery(hql).setParameter(0, "%"+ctype+"%").uniqueResult();
+	}
+
+	public void deleteByIds(String ids) {
+		// TODO Auto-generated method stub
+		String hql="DELETE FROM Category WHERE id IN ("+ids+")";
+		getSession().createQuery(hql).executeUpdate();
+	}*/
 	
 }

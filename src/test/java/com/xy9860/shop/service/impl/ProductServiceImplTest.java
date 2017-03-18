@@ -52,7 +52,7 @@ public class ProductServiceImplTest {
 	}
 	
 	@Test
-	public void testqueryJoinAccount() {	
+	public void testQueryJoinCategory() {	
 		//System.out.println(categoryService.queryJoinAccount(""));
 		for (Product temp : productService.queryJoinCategory("",1,2)) {
 			System.out.println(temp);

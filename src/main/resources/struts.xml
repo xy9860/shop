@@ -35,9 +35,14 @@
 				<!-- 要转换成json格式的 map -->
 					<param name="root">pageMap</param>
 					 <param name="excludeProperties">
-						rows\[\d+\]\.category\.account
+						rows\[\d+\]\.category\.account.aname,
+						rows\[\d+\]\.category\.account.apass
 						<!-- rows\[\d+\]\.category\.account -->
 					</param> 
+					
+				</result>
+				<result name="stream" type="stream">
+					<param name="inputName">inputStream</param>
 				</result>
 			</action>
 			<action name="account_*" class="accountAction" method="{1}">
