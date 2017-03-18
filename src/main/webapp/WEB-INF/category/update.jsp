@@ -23,7 +23,8 @@ form div a {
 			url : 'account_query.action',
 			valueField : 'aid',
 			textField : 'alogin',
-			panelHeight:'auto'
+			panelHeight:'auto',
+			editable:false
 		});
 		//完成数据的回显
 		
@@ -51,7 +52,7 @@ form div a {
 				//验证通过  提交数据
 				$.messager.progress(); // 显示进度条
 				$('#ff').form('submit', {//调用submit提交数据
-					url : 'category_save.action',
+					url : 'category_update.action',
 					success : function() {
 						$.messager.progress('close'); // 如果提交成功则隐藏进度条
 						//关闭当前窗体
@@ -72,7 +73,7 @@ form div a {
 <body>
 	<form id="ff" method="post">
 		<div>
-			<input type="hidden" id="cid"> <label for="ctype">类别名称:</label>
+			<input type="hidden" name="cid"> <label for="ctype">类别名称:</label>
 			<input type="text" name="ctype" />
 		</div>
 		<div>

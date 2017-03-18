@@ -34,6 +34,10 @@ public class CategoryAction extends BaseAction<Category> {
 	public void save(){
 		categoryService.save(model);
 	}
+	
+	public void update(){
+		categoryService.update(model);
+	}
 	/*private Category category;*/
 //	private CategoryService categoryService;
 	/*public void setCategory(Category category) {
