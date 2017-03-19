@@ -24,6 +24,12 @@
 						rows\[\d+\]\.account\.aname
 					</param>
 				</result>
+				<result name="jsonList" type="json">
+					<param name="root">jsonList</param>
+					<param name="excludeProperties">
+						\[\d+\]\.account
+					</param> 
+				</result>
 				<result name="stream" type="stream">
 					<param name="inputName">inputStream</param>
 				</result>

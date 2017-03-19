@@ -30,6 +30,11 @@ public class CategoryAction extends BaseAction<Category> {
 		return "stream";
 	}
 	
+	public String query(){
+		jsonList=categoryService.query();
+		return "jsonList";
+	}
+	
 	public void save(){
 		categoryService.save(model);
 	}

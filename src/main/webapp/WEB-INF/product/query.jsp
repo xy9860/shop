@@ -42,11 +42,6 @@ $(function () {
 				return "<span title="+value+">" +value+"</span>";//鼠标放上去提示当前内容
 			}
 		}, 
-		 {field:'pdate',title:'商品创建时间',width:100,formatter: function(value,row,index){
-				//用来格式化当前列的值 返回当前列的数据
-				return "<span title="+value+">" +value+"</span>";//鼠标放上去提示当前内容
-			}
-		}, 
 		{field:'pcommend',title:'推荐',width:100,align:'right',formatter: function(value,row,index){
 			//用来格式化当前列的值 返回当前列的数据
 			if(value){
@@ -77,12 +72,39 @@ $(function () {
 	    ]],
 	    toolbar: [{
 			iconCls: 'icon-add',
-			text:'添加类别',
-			handler: function(){alert('编辑按钮');}
+			text:'添加商品',
+			handler: function(){
+				parent.$('#win').window({    
+					title:'添加商品',
+					width:500,    
+				    height:400,    
+				    content:'<iframe src="send_product_save.action" frameborder="0" width="100%" height="100%"></iframe>'
+				});
+			}
 		},'-',{
 			iconCls: 'icon-edit',
-			text:'更新类别',
-			handler: function(){alert('帮助按钮');}
+			text:'更新商品',
+			handler: function(){
+				//判断是否有选中
+				var rows=$('#dg').datagrid("getSelections");//返回被选中的行 如果没有任何行被选中返回 空数组
+				if(rows.length!=1){
+					//提示没有选中
+					$.messager.show({
+						title:'错误提示',
+						msg:'请选择一条记录',
+						timeout:3000,
+						showType:'slide'
+					});
+				}else{
+					//完成弹出更新的页面
+					parent.$('#win').window({    
+						title:'更新商品',
+						width:500,    
+					    height:400,    
+					    content:'<iframe src="send_product_update.action" frameborder="0" width="100%" height="100%"></iframe>'
+					});
+				}
+			}
 		},'-',{
 			iconCls: 'icon-remove',
 			text:'删除类别',
@@ -99,10 +121,36 @@ $(function () {
 					});
 				}else{
 					//提示是否确认删除  执行删除的逻辑
-					$.messager.confirm('确认执行', '确认删除选中的记录吗?', function(r){
-						if (r){
-							// 实现删除的方法
-						}
+					$.messager.confirm('确认执行', '确认删除选中的记录吗?', function(r){	
+						 if (r) {
+			               //获取选中的记录,从记录中获取相应的id
+						   //拼接id的值然后发给后台
+			               var ids="";
+			               for(var i=0;i<rows.length;i++){
+			            	   ids+=rows[i].pid+",";
+			               }
+			               ids=ids.substring(0,ids.lastIndexOf(","));//不包括最后的下标
+			               $.post("product_deleteByIds.action",{ids:ids},function (result){//ajax 提交
+			            	   //回调函数
+			            	   if(result=="true"){//返回的那个流
+			            		   $.messager.show({
+				   						title:'提示',
+				   						msg:'删除成功',
+				   						timeout:3000,
+				   						showType:'slide'
+				   					});
+			            		   $('#dg').datagrid('reload');
+					               $('#dg').datagrid('clearSelections');//删除选中的记录 不然会出现 奇怪的故障
+			            	   }else{
+			            		   $.messager.show({
+			   						title:'错误提示',
+			   						msg:'删除失败',
+			   						timeout:3000,
+			   						showType:'slide'
+			   					});
+			            	   }
+			               },"text")//后台返回流
+						 }        
 					});
 				}
 			}
@@ -115,7 +163,7 @@ $(function () {
 		//触发查询事件
 	    searcher:function(value,name){//value 文本的内容 name 文本框的内容 	
 	        //获取当前的查询信息  从dg重新查询一次
-	    	$('#dg').datagrid('load',{ctype:value});
+	    	$('#dg').datagrid('load',{pname:value});
 	    },
 	    //menu:'#mm',
 	    prompt:'查询的内容'

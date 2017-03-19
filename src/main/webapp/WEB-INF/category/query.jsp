@@ -78,7 +78,7 @@ $(function () {
 					//提示没有选中
 					$.messager.show({
 						title:'错误提示',
-						msg:'请选择一条语句',
+						msg:'请选择一条记录',
 						timeout:3000,
 						showType:'slide'
 					});

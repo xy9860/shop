@@ -24,7 +24,7 @@
             <column name="pxremark" />
         </property>
         <property name="pdate" type="timestamp">
-            <column name="pdate" length="19" not-null="true" />
+            <column name="pdate" length="19"/>
         </property>
         <property name="pcommend" type="java.lang.Boolean">
             <column name="pcommend" />
