@@ -16,8 +16,8 @@ import com.xy9860.shop.model.FileImage;
  * */
 @Component("fileUpload")//组件 代表工具类
 public class FileUploadUtil implements FileUpload {
-	//@Value
-	private String filePath="c:/";
+	@Value("#{prop.filePath}")
+	private String filePath;
 	
 	//通过文件名获得扩展名
 	private String getFileExt(String fileName){

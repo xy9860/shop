@@ -15,16 +15,36 @@
 
 	<!-- 配置注解扫描 -->
 	<context:component-scan base-package="com.xy9860.shop.."></context:component-scan>
-	<!-- 加载properties 所有的properties都应该交给spring管理,在启动时加载 -->
-	<context:property-placeholder />
-
+	<!-- 加载properties 所有的properties都应该交给spring管理,在启动时加载 
+		spring 支持两种方式 property-placeholder只能在XML中使用
+		想在注解中使用使用  bean 加载的方式进行 org.springframework.beans.factory.config.PropertyPathFactoryBean
+	<context:property-placeholder location="classpath:conn.properties"/>
+	下面这个是上面表达式的父类 实例化出来的  也支持XML
+	<bean id="prop" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<array>
+				<value>classpath:conn.properties</value>
+				<value>classpath:public.properties</value>
+			</array>
+		</property>
+	</bean>
+	下面这个仅支持注解方式
+	-->
+	<bean id="prop" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<array>
+				<value>classpath:public.properties</value>
+			</array>
+		</property>
+	</bean>
+	<context:property-placeholder location="classpath:conn.properties"/>
 	<!-- <import resource="applicationContext-*.xml"/> -->
 
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-    	<property name="driverClass" value="com.mysql.jdbc.Driver" />
-   		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/shop" />
-   		<property name="user" value="root" />
-   		<property name="password" value="root" />
+    <bean id="dataSource" class="${dataSource}">
+    	<property name="driverClass" value="${driverClass}" />
+   		<property name="jdbcUrl" value="${jdbcUrl}" />
+   		<property name="user" value="${user}" />
+   		<property name="password" value="${password}" />
     </bean>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
     	<property name="dataSource" ref="dataSource" />
