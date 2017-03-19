@@ -17,9 +17,11 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.xy9860.shop.model.FileImage;
 import com.xy9860.shop.service.AccountService;
 import com.xy9860.shop.service.CategoryService;
 import com.xy9860.shop.service.ProductService;
+import com.xy9860.shop.util.FileUpload;
 /**
  * Struts 执行流程:
  * 先创建Action 再调用拦截器,拦截器访问成功再 调用Action的方法
@@ -43,9 +45,13 @@ public class BaseAction<T> extends ActionSupport implements SessionAware ,Applic
 	protected AccountService accountService;//直接放在这里因为service是单列的 系统启动时已经加载了 不损耗资源  而且方便调用
 	@Resource
 	protected ProductService productService;
+	@Resource
+	protected FileUpload fileUpload;
 
 	protected Class clazz;
 	protected T model;
+	
+	protected FileImage fileImage;
 
 	protected Integer page;//这两个是分页所需要的 两个值
 	protected Integer rows;
@@ -128,6 +134,12 @@ public class BaseAction<T> extends ActionSupport implements SessionAware ,Applic
 	}
 	public List<T> getJsonList() {
 		return jsonList;
+	}
+	public FileImage getFileImage() {
+		return fileImage;
+	}
+	public void setFileImage(FileImage fileImage) {
+		this.fileImage = fileImage;
 	}
 
 }

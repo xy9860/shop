@@ -1,9 +1,14 @@
 package com.xy9860.shop.action;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.commons.io.FilenameUtils;
+import org.aspectj.util.FileUtil;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -31,6 +36,14 @@ public String deleteByIds(){
 	}
 	
 	public void save(){
+		//实现文件上传的功能,并把生成的UUID文件名交给 pic
+		//System.out.println(fileImage);
+		//抽取成为一个工具类
+		//String ext=FilenameUtils.getExtension(fileImage.getFilename());
+		//FileUtil.copyFile(fileImage.getFile(),new File("c:/"+UUID.randomUUID()+"."+ext) );
+		String pic=fileUpload.uploadFile(fileImage);//执行上传工具类 返回真实文件名
+		model.setPic(pic);
+		//商品入库
 		productService.save(model);
 	}
 	

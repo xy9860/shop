@@ -112,7 +112,7 @@ form div a {
 			<input id="cc" name="category.cid">
 		</div>
 		<div>   
-	        <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">更新商品</a>  
+	        <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">更新商品</a>  
 	    </div>  
 	</form> 
 </body>

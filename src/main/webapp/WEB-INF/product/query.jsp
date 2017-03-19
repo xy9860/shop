@@ -9,6 +9,8 @@ $(function () {
 	$('#dg').datagrid({
 	    url:'product_queryJoinCategory.action',//请求数据的url地址
 	    queryParams:{pname:''},//当请求远程数据时，发送的额外参数。
+	    remoteSort:false,
+	    sortName:'pid',
 	    idField:'pid',//指定cid为标识字段 可以隔着页面选中
 	    striped:true,//奇偶行变色
 	    fitColumns:true,//自动适应列  设置这个以后不会出现水平滚动条
@@ -77,7 +79,7 @@ $(function () {
 				parent.$('#win').window({    
 					title:'添加商品',
 					width:500,    
-				    height:400,    
+				    height:500,    
 				    content:'<iframe src="send_product_save.action" frameborder="0" width="100%" height="100%"></iframe>'
 				});
 			}
@@ -100,7 +102,7 @@ $(function () {
 					parent.$('#win').window({    
 						title:'更新商品',
 						width:500,    
-					    height:400,    
+					    height:500,    
 					    content:'<iframe src="send_product_update.action" frameborder="0" width="100%" height="100%"></iframe>'
 					});
 				}

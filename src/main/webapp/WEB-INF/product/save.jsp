@@ -45,9 +45,17 @@
 					}
 				});
 
-			$("form input").validatebox({
+			$("form input[name=pname]").validatebox({
 				required : true,
 				missingMessage : '必须输入一个值!',
+				tipPosition : 'left',
+				validateOnCreate : false,//刚开始不验证
+				validateOnBlur : true
+			//丢失焦点 验证
+			});
+			$("form textarea").validatebox({
+				required : true,
+				missingMessage : '请输入介绍!',
 				tipPosition : 'left',
 				validateOnCreate : false,//刚开始不验证
 				validateOnBlur : true
@@ -64,23 +72,18 @@
 				validateOnCreate : false,//刚开始不验证
 				validateOnBlur : true
 			//丢失焦点 验证
-			});
+			}); 
 
 			//文件上传
-			$("form input[name=pic]").filebox(
-					{
-						required : true,
-						validateOnCreate : false,//刚开始不验证
-						validateOnBlur : true,//丢失焦点 验证
-						width:200,
-						buttonText : '选择文件',
-						tipPosition : 'left',
-						missingMessage : '请上传一个商品图片',
-						buttonAlign : 'right',
-						accept : [ 'image/jpg', 'image/bmp', 'image/jpeg','image/gif', 'image/png' ],
-						prompt : '请选择一个图片类型的文件',
-						validType : "format['jpg,png,gif,bmp,jpeg']"
-					})
+			 $("form #upload").validatebox({
+				required : true,
+				tipPosition : 'left',
+				width:200,
+				missingMessage : '请上传一张商品图片',
+				validateOnCreate : false,//刚开始不验证
+				validateOnBlur : true,//丢失焦点 验证
+				validType : "format['jpg,png,gif,bmp,jpeg']"
+			}); 
 			//注册btn事件
 			$("#btn").click(function() {
 				//如果验证成功就提交数据
@@ -89,6 +92,7 @@
 					$.messager.progress(); // 显示进度条
 					$('#ff').form('submit', {//调用submit提交数据
 						url : 'product_save.action',
+						/* data: $("#ff").serialize(), */
 						success : function() {
 							$.messager.progress('close'); // 如果提交成功则隐藏进度条
 							//关闭当前窗体
@@ -107,7 +111,7 @@
 	</script>
 </head>
 <body>
-	<form id="ff" method="post">   
+	<form id="ff" method="post"  enctype="multipart/form-data">   
 	    <div>   
 	        <label for="pname">商品名称:</label>   
 	        <input type="text" name="pname" />   
@@ -118,16 +122,12 @@
 	    </div> 
 	    <div>   
 	        <label for="pic">商品图片:</label>   
-	        <input id="fb" type="text" style="width:300px" name="pic" />
-	    </div> 
-	    <div>   
-	        <label for="premark">简单介绍:</label>   
-	        <input type="text" name="premark" />   
-	    </div> 
-	    <div>   
-	        <label for="pxremark">详细介绍:</label>   
-	        <input type="text" name="pxremark" />   
-	    </div> 
+	        <input id="upload" type="file" style="width:200px" name="fileImage.upload" />
+	    </div>
+	    <div>
+			<label for="account">所属类别:</label>
+			<input id="cc" name="category.cid">
+		</div>
 	    <div>   
 	        <label for="pcommend"></label>   
 	        <input type="radio" name="pcommend" value="true" checked="checked" /> 推荐
@@ -138,10 +138,14 @@
 	        <input type="radio" name="popen" value="true" checked="checked" /> 有效 
 	     	<input type="radio" name="popen" value="false" /> 无效
 	    </div>
-	    <div>
-			<label for="account">所属类别:</label>
-			<input id="cc" name="category.cid">
-		</div>
+	    <div>   
+	        <label for="premark">简单介绍:</label>   
+	        <textarea name="premark" cols="40" rows="4"></textarea>   
+	    </div> 
+	    <div>   
+	        <label for="pxremark">详细介绍:</label>   
+	        <textarea name="pxremark" cols="40" rows="8"></textarea>     
+	    </div> 
 		<div>   
 	        <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加商品</a>  
 	    </div>  
