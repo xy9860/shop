@@ -65,7 +65,7 @@ public class ProductServiceImplTest {
 		//System.out.println(categoryService.queryJoinAccount(""));
 		for (Product temp : productService.queryByCid(2)) {
 			System.out.println(temp);
-			//System.out.println(temp.getCategory());
+			System.out.println(temp.getCategory());
 		}
 	}
 

@@ -1,7 +1,6 @@
 package com.xy9860.shop.listener;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Timer;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -9,20 +8,20 @@ import javax.servlet.ServletContextListener;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.xy9860.shop.model.Category;
-import com.xy9860.shop.model.Product;
-import com.xy9860.shop.service.CategoryService;
-import com.xy9860.shop.service.ProductService;
 /**
  * 项目启动时候的初始化
  * 
  * 监听器是v层的 不能交给spring 管理   实例化不能失败
  * */
+import com.xy9860.shop.util.ProductTimeTask;
 public class InitDataListener implements ServletContextListener {
 
-	private ProductService productService=null;
+/*	private ProductService productService=null;
+	private CategoryService categoryService=null;*/
+	
+	private ProductTimeTask productTimeTask=null;
+	
 	private ApplicationContext context =null;
-	private CategoryService categoryService=null;
 	
 	public void contextDestroyed(ServletContextEvent sce) {
 		
@@ -43,14 +42,19 @@ public class InitDataListener implements ServletContextListener {
 		//3.通过工具类添加
 		context = WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext());
 		//System.out.println(sce.getServletContext().getInitParameter("contextConfigLocation"));
-		productService=(ProductService)context.getBean("productService");
+		/*productService=(ProductService)context.getBean("productService");
 		categoryService=(CategoryService)context.getBean("categoryService");
 		List<List<Product>> bigList=new ArrayList<List<Product>>();//存放所有商品的大集合
 		//System.out.println(productService);
 		for (Category category : categoryService.queryByChot(true)) {
 			bigList.add(productService.queryByCid(category.getCid()));
 		}
-		sce.getServletContext().setAttribute("bigList", bigList);//放到Appliction中便于查询
+		sce.getServletContext().setAttribute("bigList", bigList);//放到Appliction中便于查询*/	
+		productTimeTask=(ProductTimeTask)context.getBean("productTimeTask");
+		//设置同步器,让他每隔1小时进行同步
+		productTimeTask.setApplication(sce.getServletContext());
+		//配置成为守护线程  并且立即执行  每一个小时重复执行
+		new Timer(true).schedule(productTimeTask, 0, 1000*60*60);
 	}
 
 }

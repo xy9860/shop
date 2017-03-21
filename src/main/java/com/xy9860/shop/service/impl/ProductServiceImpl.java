@@ -30,7 +30,7 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
 	}
 	
 	public List<Product> queryByCid(int cid) {
-		String hql="FROM Product p WHERE p.pcommend=true AND p.popen=true AND p.category.cid=? ORDER BY p.pdate DESC";
+		String hql="FROM Product p INNER JOIN FETCH p.category WHERE p.pcommend=true AND p.popen=true AND p.category.cid=? ORDER BY p.pdate DESC";
 		return getSession().createQuery(hql)
 				.setParameter(0, cid)
 				.setFirstResult(0).setMaxResults(4)
