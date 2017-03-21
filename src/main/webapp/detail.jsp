@@ -2,10 +2,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-	<%@include file="/public/head.jspf"%>
-	<link rel="stylesheet" href="${shop}/css/public.css" />
-	<link rel="stylesheet" href="${shop}/css/style.css" />
+	<%@include file="/public/head_fore.jspf"%>
 	<link rel="stylesheet" href="${shop}/css/detail.css" />
+	<c:set value="${requestScope.product}" var="product" />
 </head>
 <body>
     <div class="wrapper">
@@ -189,6 +188,7 @@
                 </ul>
             </div>
         </div>
+       </div>
         <!--导航栏结束-->
         <div class="section_container">
             <!-- 面包屑 -->
@@ -253,17 +253,17 @@
                 <!--详情右侧-->
                 <div class="product_rightcol fr">
                     <div id="name">
-                        <h1>${product.name}</h1> <strong>支持货到付款，新店开张，全场低至三折包邮，已购买运费险，七天无理由退换，让您购物无忧！</strong>
+                        <h1>${product.pname}</h1> <strong>支持货到付款，新店开张，全场低至三折包邮，已购买运费险，七天无理由退换，让您购物无忧！</strong>
                     </div>
                     <ul id="summary">
                         <li id="summary-market">
                             <div class="dt">参&nbsp;考&nbsp;价：</div>
-                            <div class="dd"> <del id="page_maprice">￥219.00</del>
+                            <div class="dd"> <del id="page_maprice">￥${product.price}</del>
                             </div>
                         </li>
                         <li id="summary-price">
                             <div class="dt">折&nbsp;后&nbsp;价：</div>
-                            <div class="dd"> <strong class="p-price" id="jd-price">￥89.00</strong>
+                            <div class="dd"> <strong class="p-price" id="jd-price">￥${product.price}</strong>
                             </div>
                         </li>
                     </ul>
@@ -321,7 +321,7 @@
                         <button class="add_cart"><a href="#">加入购物车</a></button>
                     </div>
                 </div>
-                <!--详情右侧结束--> </div>
+                <!--详情右侧结束--> </div></div>
             <!--产品详情结束-->
             <!-- 产品列表 -->
             <div class="products_list products_slider clear">
@@ -342,7 +342,7 @@
                             <span class="pr_add">添加购物车</span>
                         </button>
                         <button class="price_add" title="" type="button">
-                            <span class="pr_price">￥76.00</span>
+                            <span class="pr_price">￥76.00</span></button>
                         </div>
                     </li>
                     <li>
@@ -462,7 +462,7 @@
                             <span class="pr_add">添加购物车</span>
                         </button>
                         <button class="price_add" title="" type="button">
-                            <span class="pr_price">￥76.00</span>
+                            <span class="pr_price">￥76.00</span></button>
                         </div>
                     </li>
                     <li>

@@ -45,11 +45,11 @@
 						rows\[\d+\]\.category\.account.apass
 						<!-- rows\[\d+\]\.category\.account -->
 					</param> 
-					
 				</result>
 				<result name="stream" type="stream">
 					<param name="inputName">inputStream</param>
 				</result>
+				<result name="detail">/detail.jsp</result>
 			</action>
 			<action name="account_*" class="accountAction" method="{1}">
 				<result name="index">/index.jsp</result>

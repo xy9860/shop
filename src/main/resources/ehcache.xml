@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../config/ehcache.xsd">
+
+<!-- 如果内存溢出,则存储到硬盘空间 -->
+	<diskStore path="java.io.tmpdir"/>
+    <!-- <defaultCache
+            maxElementsInMemory="10000" 内存支持的最大对象数
+            eternal="false"对象是否永久生效 建议为false 这样下面的两个参数才会有效
+            timeToIdleSeconds="120" 对象的间隔周期 默认单位为秒  如果在时间内没人访问就销毁
+            timeToLiveSeconds="120" 对象的生命周期 默认单位秒    时间到了就销毁
+            maxElementsOnDisk="10000000" 硬盘支持的最大对象数
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU"> 对象替换策略  FIFO 先进先出 (已经被淘汰) LRU最近最少使用算法(时间策略)忽略访问频率  LFU最近最未使用算法(频率策略忽略时间)
+        <persistence strategy="localTempSwap"/>
+    </defaultCache> -->
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="60"
+            timeToLiveSeconds="120"
+            maxElementsOnDisk="10000000"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LFU">
+        <persistence strategy="localTempSwap"/>
+    </defaultCache>
+</ehcache>

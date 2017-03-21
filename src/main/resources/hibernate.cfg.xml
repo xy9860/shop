@@ -11,9 +11,19 @@
   <property name="show_sql">true</property>
 <!--   <property name="hibernate.current_session_context_class">thread</property>
  --> 
+       
+<!-- 配置二级缓存的所需的类 -->
+<property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+<!-- 配置启用查询缓存-->
+<property name="cache.use_query_cache">true</property>
+
+
 <mapping resource="com/xy9860/shop/model/Account.hbm.xml"/> 
 <mapping resource="com/xy9860/shop/model/Category.hbm.xml"/>
 <mapping resource="com/xy9860/shop/model/Product.hbm.xml"/>
+
+<!-- 配置哪些类需要二级缓存 -->
+<class-cache usage="read-write" class="com.xy9860.shop.model.Product"></class-cache>
 
  </session-factory>
 </hibernate-configuration>

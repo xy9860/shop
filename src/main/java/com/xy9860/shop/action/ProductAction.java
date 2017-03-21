@@ -50,4 +50,9 @@ public String deleteByIds(){
 	public void update(){
 		productService.update(model);
 	}
+	
+	public String get(){
+		request.put("product", productService.get(model.getPid()));
+		return "detail";
+	}
 }

@@ -152,7 +152,7 @@
                 <c:forEach items="${list }" var="product">
 	                <ul id="first-carousel" class="first-and-second-carousel jcarousel-skin-tango">
 	                    <li> 
-	                    	<a href="#" class="product_image"><img src="${shop}/image/${product.pic}" /></a>
+	                    	<a href="${shop}/product_get.action?pid=${product.pid}" class="product_image"><img src="${shop}/image/${product.pic}" /></a>
 	                        <div class="product_info">
 	                            <h3><a href="#">${product.pname}</a></h3>
 	                            <small>${product.premark}</small> </div>
