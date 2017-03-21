@@ -55,6 +55,15 @@ public class CategoryServiceImplTest {
 	}
 	
 	@Test
+	public void testqueryByChot() {	
+		//System.out.println(categoryService.queryJoinAccount(""));
+		for (Category category : categoryService.queryByChot(true)) {
+			System.out.println(category);
+			//System.out.println(category.getAccount());
+		}
+	}
+	
+	@Test
 	public void testGetCount(){
 		System.out.println(categoryService.getCount(""));
 	}

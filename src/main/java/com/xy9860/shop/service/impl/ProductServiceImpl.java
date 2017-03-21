@@ -28,6 +28,14 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
 		String hql="DELETE FROM Product WHERE id IN ("+ids+")";
 		getSession().createQuery(hql).executeUpdate();
 	}
+	
+	public List<Product> queryByCid(int cid) {
+		String hql="FROM Product p WHERE p.pcommend=true AND p.popen=true AND p.category.cid=? ORDER BY p.pdate DESC";
+		return getSession().createQuery(hql)
+				.setParameter(0, cid)
+				.setFirstResult(0).setMaxResults(4)
+				.list();
+	}
 /*
 	public List<Category> queryJoinAccount(String ctype, int page, int rows) {
 		return getSession().createQuery("FROM Category c LEFT JOIN FETCH c.account WHERE c.type like ?")
@@ -49,5 +57,7 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
 		String hql="DELETE FROM Category WHERE id IN ("+ids+")";
 		getSession().createQuery(hql).executeUpdate();
 	}*/
+
+
 	
 }

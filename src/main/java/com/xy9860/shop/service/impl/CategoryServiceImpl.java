@@ -31,6 +31,17 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 		String hql="DELETE FROM Category WHERE id IN ("+ids+")";
 		getSession().createQuery(hql).executeUpdate();
 	}
+
+	public List<Category> queryByChot(boolean chot) {
+		String hql="FROM Category c  WHERE c.chot = ?";
+		return getSession().createQuery(hql)
+				.setParameter(0, chot)
+				.setFirstResult(0)
+				.setMaxResults(3)
+				.list();
+	}
+	
+	
 	
 /*	public SessionFactory getSessionFactory() {
 		return sessionFactory;

@@ -14,7 +14,7 @@ import com.xy9860.shop.service.CategoryService;
 import com.xy9860.shop.service.impl.CategoryServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="classpath:applicationContext.xml")
+@ContextConfiguration(locations="classpath:applicationContext*.xml")
 public class SSH_Test {
 
 	/*@Resource

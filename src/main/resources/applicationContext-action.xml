@@ -19,12 +19,13 @@
    	
    <!--  	<bean id="sendAction" class="com.xy9860.shop.action.SendAction" />-->
    	
-	<!--  <bean id="baseAction" class="com.xy9860.shop.action.BaseAction" scope="prototype">--><!-- 创建父类 以后直接继承这个父类 就可以了 -->
-   	<!-- 	<property name="categoryService" ref="categoryService" />
+	  <bean id="baseAction" class="com.xy9860.shop.action.BaseAction" scope="prototype"><!-- 创建父类 以后直接继承这个父类 就可以了 -->
+   		<property name="categoryService" ref="categoryService" />
    		<property name="accountService" ref="accountService" />
    	</bean>
    	
    	<bean id="categoryAction" class="com.xy9860.shop.action.CategoryAction" parent="baseAction" />
    	<bean id="accountAction" class="com.xy9860.shop.action.AccountAction" parent="baseAction" />
-     被代替	 -->
+   	<bean id="productAction" class="com.xy9860.shop.action.ProductAction" parent="baseAction" />
+  <!--    被代替 -->	
  </beans>
