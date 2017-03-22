@@ -1,7 +1,6 @@
 package com.xy9860.shop.model;
 // Generated 2017-3-16 19:35:17 by Hibernate Tools 5.2.1.Final
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -17,7 +16,7 @@ public class Product implements java.io.Serializable {
 
 	private Integer pid;
 	private String pname;
-	private BigDecimal price;
+	private Double price;
 	private String pic;
 	private String premark;
 	private String pxremark;
@@ -45,11 +44,11 @@ public class Product implements java.io.Serializable {
 		this.pname = pname;
 	}
 
-	public BigDecimal getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

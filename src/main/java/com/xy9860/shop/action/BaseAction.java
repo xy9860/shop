@@ -2,7 +2,6 @@ package com.xy9860.shop.action;
 
 import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,13 +13,14 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.xy9860.shop.model.FileImage;
 import com.xy9860.shop.service.AccountService;
 import com.xy9860.shop.service.CategoryService;
+import com.xy9860.shop.service.ForderService;
 import com.xy9860.shop.service.ProductService;
+import com.xy9860.shop.service.SorderService;
 import com.xy9860.shop.util.FileUpload;
 /**
  * Struts 执行流程:
@@ -47,6 +47,10 @@ public class BaseAction<T> extends ActionSupport implements SessionAware ,Applic
 	protected ProductService productService;
 	@Resource
 	protected FileUpload fileUpload;
+	@Resource
+	protected SorderService sorderService;
+	@Resource
+	protected ForderService forderService;
 
 	protected Class clazz;
 	protected T model;

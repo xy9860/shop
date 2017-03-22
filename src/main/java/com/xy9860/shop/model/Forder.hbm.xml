@@ -20,7 +20,7 @@
         <property name="fdate" type="timestamp">
             <column name="fdate" length="19" not-null="true" />
         </property>
-        <property name="ftotal" type="big_decimal">
+        <property name="ftotal" type="java.lang.Double">
             <column name="ftotal" precision="8" />
         </property>
         <property name="fpost" type="string">
@@ -36,7 +36,7 @@
         	<key>
         		<column name="fid" /><!-- 去另一个表找这个外键 -->
         	</key>
-        	<one-to-many class="com.xy9860.shop.model.Sorder"/>
+        	<one-to-many class="com.xy9860.shop.model.Forder"/>
         </set>
     </class>
 </hibernate-mapping>
