@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-22 11:18:04 by Hibernate Tools 5.2.1.Final -->
+<hibernate-mapping>
+    <class name="com.xy9860.shop.model.Status" table="status" catalog="shop" optimistic-lock="version">
+        <id name="tid" type="java.lang.Integer">
+            <column name="tid" />
+            <generator class="identity" />
+        </id>
+        <property name="tstatus" type="string">
+            <column name="tstatus" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

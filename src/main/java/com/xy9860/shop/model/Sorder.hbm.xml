@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-22 11:18:04 by Hibernate Tools 5.2.1.Final -->
+<hibernate-mapping>
+    <class name="com.xy9860.shop.model.Sorder" table="sorder" catalog="shop" optimistic-lock="version">
+        <id name="sid" type="java.lang.Integer">
+            <column name="sid" />
+            <generator class="identity" />
+        </id>
+        <property name="sname" type="string">
+            <column name="sname" length="20" />
+        </property>
+        <property name="sprice" type="big_decimal">
+            <column name="sprice" precision="8" />
+        </property>
+        <property name="snumber" type="int">
+            <column name="snumber" not-null="true" />
+        </property>
+        <property name="pid" type="java.lang.Integer">
+            <column name="pid" />
+        </property>
+        <many-to-one name="product" class="com.xy9860.shop.model.Product" column="pid"></many-to-one>
+    </class>
+</hibernate-mapping>

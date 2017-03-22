@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-22 11:18:04 by Hibernate Tools 5.2.1.Final -->
+<hibernate-mapping>
+    <class name="com.xy9860.shop.model.Forder" table="forder" catalog="shop" optimistic-lock="version">
+        <id name="fid" type="java.lang.Integer">
+            <column name="fid" />
+            <generator class="identity" />
+        </id>
+        <property name="fname" type="string">
+            <column name="fname" length="20" />
+        </property>
+        <property name="fphone" type="string">
+            <column name="fphone" length="20" />
+        </property>
+        <property name="fremark" type="string">
+            <column name="fremark" length="20" />
+        </property>
+        <property name="fdate" type="timestamp">
+            <column name="fdate" length="19" not-null="true" />
+        </property>
+        <property name="ftotal" type="big_decimal">
+            <column name="ftotal" precision="8" />
+        </property>
+        <property name="fpost" type="string">
+            <column name="fpost" length="20" />
+        </property>
+        <property name="faddress" type="string">
+            <column name="faddress" length="200" />
+        </property>
+        <many-to-one name="status" class="com.xy9860.shop.model.Status" column="tid"></many-to-one>
+        <many-to-one name="user" class="com.xy9860.shop.model.User" column="uid"></many-to-one>
+        <set name="sorders">
+        <!-- 代表的是外键 -->
+        	<key>
+        		<column name="fid" /><!-- 去另一个表找这个外键 -->
+        	</key>
+        	<one-to-many class="com.xy9860.shop.model.Sorder"/>
+        </set>
+    </class>
+</hibernate-mapping>

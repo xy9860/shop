@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-22 11:18:04 by Hibernate Tools 5.2.1.Final -->
+<hibernate-mapping>
+    <class name="com.xy9860.shop.model.User" table="user" catalog="shop" optimistic-lock="version">
+        <id name="uid" type="java.lang.Integer">
+            <column name="uid" />
+            <generator class="identity" />
+        </id>
+        <property name="ulogin" type="string">
+            <column name="ulogin" length="20" />
+        </property>
+        <property name="uname" type="string">
+            <column name="uname" length="20" />
+        </property>
+        <property name="upass" type="string">
+            <column name="upass" length="20" />
+        </property>
+        <property name="usex" type="string">
+            <column name="usex" length="20" />
+        </property>
+        <property name="uphone" type="string">
+            <column name="uphone" length="20" />
+        </property>
+        <property name="uemail" type="string">
+            <column name="uemail" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>
