@@ -19,6 +19,7 @@ public class SorderAction extends BaseAction<Sorder> {
 			session.put("forder", forder);
 		}
 		forderService.addSorder(forder, sorderService.getByPid(model.getProduct().getPid()));
+		forder.setFtotal(forderService.cluTotal(forder));
 		return "showCar";
 	}
 }

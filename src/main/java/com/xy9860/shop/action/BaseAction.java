@@ -21,6 +21,7 @@ import com.xy9860.shop.service.CategoryService;
 import com.xy9860.shop.service.ForderService;
 import com.xy9860.shop.service.ProductService;
 import com.xy9860.shop.service.SorderService;
+import com.xy9860.shop.service.UserService;
 import com.xy9860.shop.util.FileUpload;
 /**
  * Struts 执行流程:
@@ -51,6 +52,8 @@ public class BaseAction<T> extends ActionSupport implements SessionAware ,Applic
 	protected SorderService sorderService;
 	@Resource
 	protected ForderService forderService;
+	@Resource
+	protected UserService userService;
 
 	protected Class clazz;
 	protected T model;

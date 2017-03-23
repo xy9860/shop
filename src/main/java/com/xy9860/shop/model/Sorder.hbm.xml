@@ -17,6 +17,7 @@
         <property name="snumber" type="int">
             <column name="snumber" not-null="true" />
         </property>
+        <many-to-one name="forder" class="com.xy9860.shop.model.Forder" column="fid"></many-to-one>
         <many-to-one name="product" class="com.xy9860.shop.model.Product" column="pid"></many-to-one>
     </class>
 </hibernate-mapping>

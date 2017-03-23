@@ -2,9 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-	  <%@include file="/public/head.jspf" %>	
-	  <link rel="stylesheet" href="${shop}/css/public.css" />
-      <link rel="stylesheet" href="${shop}/css/style.css" />
+	  <%@include file="/public/head_fore.jspf" %>	
   </head>
   <body>
   	 <div class="wrapper">
@@ -35,7 +33,7 @@
                     <!-- logo -->
                     <h1 class="logo clear fl">
                         <a href="index.html">
-                            <img src="images/logo.png" />
+                            <img src="${shop }/images/logo.png" />
                         </a>
                     </h1>
                     <!-- 小购物车 -->
@@ -59,7 +57,7 @@
                 </div>
 
             </div>
-        </div>
+        </div></div>
         <!-- 头部结束 -->
 
         <!-- 导航栏 -->
@@ -219,56 +217,56 @@
 							<th class="align_center" width="20%">数量</th>
 							<th class="align_center" width="15%">小计</th>
 						</tr>
-						<c:forEach items="${sessionScope.forder.sorderList}" var="sorder">
-						<tr lang="${sorder.product.id}">
-							<td class="align_center"><a href="#" class="edit">${sorder.product.id}</a>
+						<c:forEach items="${sessionScope.forder.sorders}" var="sorder">
+						<tr lang="${sorder.product.pid}">
+							<td class="align_center"><a href="#" class="edit">${sorder.product.pid}</a>
 							</td>
-							<td width="80px"><img src="images/cart1.jpg" width="80"
+							<td width="80px"><img src="${shop}/image/${sorder.product.pic}" width="80"
 								height="80" />
 							</td>
-							<td class="align_left"><a class="pr_name" href="#">${sorder.name}</a>
+							<td class="align_left"><a class="pr_name" href="#">${sorder.sname}</a>
 							</td>
-							<td class="align_center vline">￥ ${sorder.price}</td>
+							<td class="align_center vline">￥ ${sorder.sprice}</td>
 							<td class="align_center vline">
-								${sorder.number}	
+								${sorder.snumber}	
 							</td>
-							<td class="align_center vline">￥${sorder.price*sorder.number}</td>
+							<td class="align_center vline">￥${sorder.sprice*sorder.snumber}</td>
 						</tr>
 						</c:forEach>
 					</table>
 					
                     <div class="sum"> 
-                        <div class="fr"><span>总计：</span><b>￥${forder.total}</b></div>
+                        <div class="fr"><span>总计：</span><b>￥${forder.ftotal}</b></div>
                     </div>
                    
                 </div>
                 <!-- 订购人确认 -->
-                <form action="#" method="post">
+                <form action="${shop }/forder_save.action" method="post">
 	                <div class="person-check check">
 	                    <h1>订购人信息</h1>
 	                    <div class="person-checkinner">
 	                        <div>
 	                        	<label>配送姓名:</label>
-	                        	<input type="text" name="name" />
+	                        	<input type="text" name="fname" value="${sessionScope.user.uname }" />
 	                        </div>
 	                        <div>
 	                        	<label>联系方式:</label>
-	                        	<input type="text" name="phone" />
+	                        	<input type="text" name="fphone" value="${sessionScope.user.uphone }" />
 	                        </div>
 	                        <div>
 	                        	<label>区域邮编:</label>
-	                        	<input type="text" name="post" />
+	                        	<input type="text" name="fpost" />
 	                        </div>
 	                        <div>
 	                        	<label>配送地址:</label>
-	                        	<input type="text" name="address" />
+	                        	<input type="text" name="faddress" />
 	                        </div>
 	                    </div>
 	                </div>
 	                <!-- 卖家留言 -->
 	                <div class="person-check check">
 	               		<h1>卖家留言</h1>
-	                	<textarea style="margin: 5px;" name="remark" cols="120" rows="2">输入留言信息</textarea>
+	                	<textarea style="margin: 5px;" name="fremark" cols="120" rows="2">输入留言信息</textarea>
 		                <div class="submit">
 		                   	<input type="submit" class="sub-logo fr" style="margin: 0px;padding: 0px; border: 0px;" value="确认无误,购买" />
 		                </div>

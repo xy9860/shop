@@ -18,7 +18,7 @@
             <column name="fremark" length="20" />
         </property>
         <property name="fdate" type="timestamp">
-            <column name="fdate" length="19" not-null="true" />
+            <column name="fdate" length="19" />
         </property>
         <property name="ftotal" type="java.lang.Double">
             <column name="ftotal" precision="8" />
@@ -31,12 +31,13 @@
         </property>
         <many-to-one name="status" class="com.xy9860.shop.model.Status" column="tid"></many-to-one>
         <many-to-one name="user" class="com.xy9860.shop.model.User" column="uid"></many-to-one>
-        <set name="sorders">
+        <!-- inverse="false" 这里指的是是否反转 false为当前表控制外键 会多发语句  建议为true -->
+        <set name="sorders" inverse="true" cascade="all" lazy="true" fetch="join">
         <!-- 代表的是外键 -->
         	<key>
         		<column name="fid" /><!-- 去另一个表找这个外键 -->
         	</key>
-        	<one-to-many class="com.xy9860.shop.model.Forder"/>
+        	<one-to-many class="com.xy9860.shop.model.Sorder"/>
         </set>
     </class>
 </hibernate-mapping>

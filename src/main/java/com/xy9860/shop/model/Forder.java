@@ -22,10 +22,12 @@ public class Forder implements java.io.Serializable {
 	private User user;
 	private Set<Sorder> sorders=new HashSet<Sorder>();//记得创建实体
 	
+
 	@Override
 	public String toString() {
-		return "Forder [fid=" + fid + ", fname=" + fname + ", fphone=" + fphone + ", fremark=" + fremark + ", fdate="
-				+ fdate + ", ftotal=" + ftotal + ", fpost=" + fpost + ", faddress=" + faddress + "]";
+		return "Forder [ fname=" + fname + ", fphone=" + fphone + ", fremark=" + fremark + ", fdate="
+				+ fdate + ", ftotal=" + ftotal + ", fpost=" + fpost + ", faddress=" + faddress + ", status=" + status
+				+ ", user=" + user + ", sorders=" + sorders + "]";
 	}
 
 	public Forder() {
@@ -42,8 +44,10 @@ public class Forder implements java.io.Serializable {
 		this.faddress = faddress;
 	}
 
+
+
 	public Integer getFid() {
-		return this.fid;
+		return fid;
 	}
 
 	public void setFid(Integer fid) {

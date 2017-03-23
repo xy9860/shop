@@ -8,8 +8,7 @@ public class Sorder implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Sorder [sid=" + sid + ", sname=" + sname + ", sprice=" + sprice + ", snumber=" + snumber + ", fid="
-				+ fid + "]";
+		return "Sorder [sid=" + sid + ", sname=" + sname + ", sprice=" + sprice + ", snumber=" + snumber + "]";
 	}
 
 	@Override
@@ -28,7 +27,7 @@ public class Sorder implements java.io.Serializable {
 	private String sname;
 	private Double sprice;
 	private int snumber;
-	private Integer fid;
+	private Forder forder;
 	private Product product;
 
 	public Sorder() {
@@ -38,11 +37,10 @@ public class Sorder implements java.io.Serializable {
 		this.snumber = snumber;
 	}
 
-	public Sorder(String sname, Double sprice, int snumber, Integer fid ){
+	public Sorder(String sname, Double sprice, int snumber ){
 		this.sname = sname;
 		this.sprice = sprice;
 		this.snumber = snumber;
-		this.fid = fid;
 	}
 
 	public Integer getSid() {
@@ -86,14 +84,12 @@ public class Sorder implements java.io.Serializable {
 		this.product = product;
 	}
 
-	public Integer getFid() {
-		return fid;
+	public Forder getForder() {
+		return forder;
 	}
 
-	public void setFid(Integer fid) {
-		this.fid = fid;
+	public void setForder(Forder forder) {
+		this.forder = forder;
 	}
-
-
 
 }

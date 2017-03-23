@@ -5,6 +5,7 @@ import java.util.Iterator;
 import org.springframework.stereotype.Service;
 
 import com.xy9860.shop.model.Forder;
+import com.xy9860.shop.model.Product;
 import com.xy9860.shop.model.Sorder;
 import com.xy9860.shop.service.ForderService;
 
@@ -13,13 +14,9 @@ public class ForderServiceImpl extends BaseServiceImpl<Forder> implements Forder
 
 	public Forder addSorder(Forder forder, Sorder sorder) {
 		Iterator<Sorder> it=forder.getSorders().iterator();
-		if (forder.getFtotal()==null) {
-			forder.setFtotal(new Double(0));
-		}
-		forder.setFtotal(forder.getFtotal()+sorder.getSprice());
 		while (it.hasNext()) {
 			Sorder temp=it.next();
-			if (temp.hashCode()==sorder.hashCode()) {
+			if (temp.hashCode()==sorder.hashCode()) {// 如果购物车中存在同样的商品
 				sorder.setSnumber(temp.getSnumber()+1);
 				forder.getSorders().remove(temp);
 				break;
@@ -38,6 +35,14 @@ public class ForderServiceImpl extends BaseServiceImpl<Forder> implements Forder
 			forder.setFtotal(forder.getFtotal()+temp.getSprice());
 		}*/
 		return forder;
+	}
+	
+	public double cluTotal(Forder forder){
+		double total=0;
+		for (Sorder sorder : forder.getSorders()) {
+			total+=sorder.getSprice()*sorder.getSnumber();
+		}
+		return total;
 	}
 
 }

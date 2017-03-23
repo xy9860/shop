@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -32,9 +33,8 @@
 					</h1>
 					<!-- 小购物车 -->
 					<div class="minicart">
-						<a class="minicart_link" href="#"> <span class="item">
-								<b>${fn:length(sessionScope.forder.sorderList)}|${sessionScope.forder.number}</b>件/ </span> <span class="price"> <b>￥${sessionScope.forder.total}</b> </span> </a>
-					</div>
+						<a class="minicart_link" href="#"> <span class="item"></span></a>
+</div>
 					<!-- 小购物车结束 -->
 					<!-- 搜索框 -->
 					<div class="header_search">
@@ -102,7 +102,7 @@
 					<li><a href="#">装饰品</a></li>
 				</ul>
 			</div>
-		</div>
+		</div></div>
 		<!--导航栏结束-->
 		<div class="section_container">
 			<!-- 购物车 -->
@@ -110,14 +110,14 @@
 				<form method="post" action="${shop}/user_login.action">
 					<div>
 						<label for="login">账号:&nbsp;</label> 
-						<input type="text" name="login" />
+						<input type="text" name="ulogin" />
 					</div>
 					<div>
-						<label for="pass">密码:&nbsp</label> 
-						<input type="text" name="pass" />
+						<label for="pass">密码:&nbsp;</label> 
+						<input type="password" name="upass" />
 					</div>
 					<div>
-						${requestScope.error}  
+						${sessionScope.error}  
 					</div>
 					<div>
 						<input type="submit" value="登陆" style="width:60px;height:30px" />
