@@ -12,8 +12,8 @@ public class Status implements java.io.Serializable {
 	public Status() {
 	}
 
-	public Status(String tstatus) {
-		this.tstatus = tstatus;
+	public Status(Integer tid) {
+		this.tid = tid;
 	}
 
 	public Integer getTid() {

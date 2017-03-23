@@ -3,8 +3,13 @@
 <html>
   <head>
 	  <%@include file="/public/head_fore.jspf" %>	
+	  <% response.setHeader("cache-control", "no-store"); %><!-- 设置页面不缓存 -->
   </head>
   <body>
+  	<c:if test="${empty  sessionScope.forder.sorders }">
+  		<!-- 购物车中的购物项为空,则跳转到首页 -->
+  		<c:redirect url="/index.jsp"></c:redirect>
+  	</c:if>
   	 <div class="wrapper">
         <div class="header">
             <div class="header_container">

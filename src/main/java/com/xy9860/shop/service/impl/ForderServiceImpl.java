@@ -22,6 +22,7 @@ public class ForderServiceImpl extends BaseServiceImpl<Forder> implements Forder
 				break;
 			}
 		}
+		sorder.setForder(forder);//建立购物项和购物车的关联,此时forder为空,入库时先入forder再入购物车  就会有fid
 		forder.getSorders().add(sorder);
 		/*Iterator<Sorder> it2=forder.getSorders().iterator();
 		while (it2.hasNext()) {

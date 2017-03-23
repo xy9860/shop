@@ -69,9 +69,9 @@
 				<result name="bank" type="redirect">/user/bank.jsp</result>
 			</action>
 			<action name="user_*" class="userAction" method="{1}">
-				<result name="ulogin">/ulogin.jsp</result>
-				<result name="index">/index.jsp</result>
-				<result name="goURL">${#session.goURL}</result><!-- 读取一个值栈里面的值 -->
+				<result name="ulogin" >/ulogin.jsp</result>
+				<result name="index" type="redirect">/index.jsp</result>
+				<result name="goURL" type="redirect">${#session.goURL}</result><!-- 读取一个值栈里面的值 -->
 			</action>
 		</package>
 </struts>  

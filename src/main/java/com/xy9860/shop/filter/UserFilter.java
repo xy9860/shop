@@ -36,11 +36,7 @@ public class UserFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		//判断session 是否有用户信息
 		HttpServletRequest req=(HttpServletRequest)request;
-		HttpServletResponse res=(HttpServletResponse)response;
-		if (req.getSession().getAttribute("forder")==null) {
-			req.getRequestDispatcher("/index.jsp").forward(request, response);
-			return;
-		}
+		HttpServletResponse res=(HttpServletResponse)response;res.setHeader("cache-control", "no-cache");
 		if (req.getSession().getAttribute("user")==null) {
 			//这里显示被过滤器被拦截的路径
 //			req.getContextPath()		项目名称
