@@ -23,6 +23,8 @@ public class ForderAction extends BaseAction<Forder> {
 		forderService.save(model);
 		//此时购物车已经入库,购物车应该清空
 		session.put("oldForder", session.get("forder"));
+		//session.put("oldForder", session.remove("forder"));
+		//但是银行页面需要使用所以在这里放在一个session里面
 		session.put("forder", new Forder());
 		return "bank";
 	}

@@ -8,6 +8,7 @@ import javax.servlet.ServletContextListener;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.xy9860.shop.util.BankUtil;
 /**
  * 项目启动时候的初始化
  * 
@@ -22,6 +23,8 @@ public class InitDataListener implements ServletContextListener {
 	private ProductTimeTask productTimeTask=null;
 	
 	private ApplicationContext context =null;
+	
+	private BankUtil bankUtil;
 	
 	public void contextDestroyed(ServletContextEvent sce) {
 		
@@ -55,6 +58,10 @@ public class InitDataListener implements ServletContextListener {
 		productTimeTask.setApplication(sce.getServletContext());
 		//配置成为守护线程  并且立即执行  每一个小时重复执行
 		new Timer(true).schedule(productTimeTask, 0, 1000*60*60);
+		
+		//项目启动时加载银行的图标
+		bankUtil=(BankUtil)context.getBean("bankUtil");
+		sce.getServletContext().setAttribute("bankList", bankUtil.getBankImage());
 	}
 
 }

@@ -15,9 +15,9 @@ import com.xy9860.shop.model.FileImage;
  * 用来实现文件上传的业务逻辑
  * */
 @Component("fileUpload")//组件 代表工具类
-public class FileUploadUtil implements FileUpload {
-	@Value("#{prop.filePath}")
-	private String filePath;
+public class FileUploadImpl implements FileUpload {
+	@Value("#{prop.imagePath}")
+	private String imagePath;
 	
 	//通过文件名获得扩展名
 	private String getFileExt(String fileName){
@@ -42,7 +42,7 @@ public class FileUploadUtil implements FileUpload {
 		String pic =newFileName(fileImage.getFilename());
 		//实现文件上传的逻辑
 		try {
-			FileUtil.copyFile(fileImage.getFile(),new File(filePath,pic));
+			FileUtil.copyFile(fileImage.getFile(),new File(imagePath,pic));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}finally {
