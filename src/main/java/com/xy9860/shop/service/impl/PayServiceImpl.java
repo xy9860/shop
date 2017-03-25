@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.xy9860.shop.model.BackData;
 import com.xy9860.shop.model.SendData;
 import com.xy9860.shop.service.PayService;
 import com.xy9860.shop.util.DigestUtil;
@@ -84,7 +85,7 @@ public class PayServiceImpl implements PayService {
 		}
 		
 		/******************************上面是发送请求的方法**************************************/
-		/*// 完成返回数据的追加
+		// 完成返回数据的追加
 		private String joinBackDataParam(BackData backData) {
 			// 追加字符串,为加密验证做准备
 			StringBuffer infoBuffer = new StringBuffer();
@@ -109,5 +110,5 @@ public class PayServiceImpl implements PayService {
 			String md5 = DigestUtil.hmacSign(joinParam.toString(),key);
 			// 密文和传过来密文比较
 			return md5.equals(backData.getHmac());
-		}*/
+		}
 }
