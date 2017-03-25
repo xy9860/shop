@@ -5,6 +5,7 @@
 <html>
   <head>
 	  <%@include file="/public/head_fore.jspf" %>
+	  <% response.setHeader("cache-control", "no-store"); %><!-- 设置页面不缓存 -->
   </head>
   <body>
   
@@ -234,7 +235,7 @@
                     </div>
                 </div>
                 <div class="select-bank">
-                	 <form action="${shop}/pay_goBank.action" method="post">
+                 <form action="${shop}/pay_goBank.action" method="post">
                     <h1>请选择支付银行</h1>
                     <!--  {fn:indexOf(name,'.'))}  {fn:substring(zip, 6, -1)} -->
                     <div>
@@ -251,7 +252,7 @@
                     <div class="reminder"><span>请确保您的银行卡已开通网银支付功能，否则没有办法完成支付&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <a href="">如何开通?</a></div>
                     <div class="pay-submit">
                     	<div class="pay-inner">
-                    		<input type="submit" style="width: 80px; height: 40px;" value="确认提交" />
+                    		<input type="submit" style="width: 80px; height: 40px;" value="确认支付" />
                     	</div>
             		</div>	
                     </form>

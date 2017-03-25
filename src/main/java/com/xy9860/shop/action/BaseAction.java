@@ -19,6 +19,7 @@ import com.xy9860.shop.model.FileImage;
 import com.xy9860.shop.service.AccountService;
 import com.xy9860.shop.service.CategoryService;
 import com.xy9860.shop.service.ForderService;
+import com.xy9860.shop.service.PayService;
 import com.xy9860.shop.service.ProductService;
 import com.xy9860.shop.service.SorderService;
 import com.xy9860.shop.service.UserService;
@@ -54,6 +55,8 @@ public class BaseAction<T> extends ActionSupport implements SessionAware ,Applic
 	protected ForderService forderService;
 	@Resource
 	protected UserService userService;
+	@Resource
+	protected PayService payService;
 
 	protected Class clazz;
 	protected T model;
