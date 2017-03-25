@@ -37,7 +37,14 @@ public class PayAction extends BaseAction<Object> implements ParameterAware {
 	public String backBank() {
 		BackData backData=(BackData)model;
 		if (payService.checkBackData(backData)) {
-			System.out.println("----------ok---------");
+			//1.更新订单状态
+			forderService.updateStatusByFid(Integer.valueOf(backData.getR6_Order()), 2);
+			//2.根据user邮箱,发送邮件
+			messageUtil.sendEmail(backData.getR8_MP().split(",")[0], backData.getR6_Order());
+			//3.根据user电话发送短信
+			
+			/*System.out.println("----------ok---------");*/
+			
 		}else{
 			System.out.println("----------fail---------");
 		}
@@ -48,9 +55,9 @@ public class PayAction extends BaseAction<Object> implements ParameterAware {
 	public Object getModel() {
 		// TODO Auto-generated method stub
 		if (parameters.get("pd_FrpId")!=null) {//判断生成的model 时候有pd_FrpId(银行选择这个参数)
-			model=new SendData();System.out.println("SendData");
+			model=new SendData();
 		} else {
-			model=new BackData();System.out.println("BackData");
+			model=new BackData();
 		}
 		return model;
 	}

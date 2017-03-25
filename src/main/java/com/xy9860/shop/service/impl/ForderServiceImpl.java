@@ -46,4 +46,14 @@ public class ForderServiceImpl extends BaseServiceImpl<Forder> implements Forder
 		return total;
 	}
 
+	public void updateStatusByFid(int fid, int tid) {
+		// TODO Auto-generated method stub
+		String hql="UPDATE Forder f SET f.status.tid=? WHERE f.fid=?";
+		getSession().createQuery(hql)
+		.setParameter(0, tid).setParameter(1, fid)
+		.executeUpdate();
+	}
+
+
+
 }

@@ -24,6 +24,7 @@ import com.xy9860.shop.service.ProductService;
 import com.xy9860.shop.service.SorderService;
 import com.xy9860.shop.service.UserService;
 import com.xy9860.shop.util.FileUpload;
+import com.xy9860.shop.util.MessageUtil;
 /**
  * Struts 执行流程:
  * 先创建Action 再调用拦截器,拦截器访问成功再 调用Action的方法
@@ -57,7 +58,9 @@ public class BaseAction<T> extends ActionSupport implements SessionAware ,Applic
 	protected UserService userService;
 	@Resource
 	protected PayService payService;
-
+	@Resource
+	protected MessageUtil messageUtil;
+	
 	protected Class clazz;
 	protected T model;
 	
