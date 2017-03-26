@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%= request.getServletPath()+"?"+request.getQueryString() %>
+	<%-- <%= request.getServletPath()+"?"+request.getQueryString() %> --%>
+	<a href="http://utf8.sms.webchinese.cn/?Uid=zty2338&Key=b35c7ebd410256ee13ec&smsMob=17713547583&smsText=你好,你的订单2341352653425已经支付">测试短信发送</a>
 </body>
 </html>

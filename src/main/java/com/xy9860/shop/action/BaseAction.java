@@ -23,6 +23,7 @@ import com.xy9860.shop.service.PayService;
 import com.xy9860.shop.service.ProductService;
 import com.xy9860.shop.service.SorderService;
 import com.xy9860.shop.service.UserService;
+import com.xy9860.shop.util.EmailUtil;
 import com.xy9860.shop.util.FileUpload;
 import com.xy9860.shop.util.MessageUtil;
 /**
@@ -58,6 +59,8 @@ public class BaseAction<T> extends ActionSupport implements SessionAware ,Applic
 	protected UserService userService;
 	@Resource
 	protected PayService payService;
+	@Resource
+	protected EmailUtil emailUtil;
 	@Resource
 	protected MessageUtil messageUtil;
 	
