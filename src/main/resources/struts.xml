@@ -4,6 +4,12 @@
 
 <struts>  
 		<package name="default" namespace="/" extends="json-default" strict-method-invocation="false"><!-- strict-method-invocation="false" 启用通配符 -->
+			<global-results>
+				<result name="stream" type="stream">
+					<param name="inputName">inputStream</param>
+				</result>
+			</global-results>
+			
 			<action name="category_*"  method="{1}" class="categoryAction">
 				<!-- 先添加json包,然后继承json-default -->
 				<result name="jsonMap" type="json">
@@ -64,6 +70,9 @@
 			</action>
 			<action name="sorder_*" class="sorderAction" method="{1}">
 				<result name="showCar" type="redirect">/showCar.jsp</result>
+				<result name="stream" type="stream">
+					<param name="inputName">inputStream</param>
+				</result>
 			</action>
 			<action name="forder_*" class="forderAction" method="{1}">
 				<result name="bank" type="redirect">/user/bank.jsp</result>

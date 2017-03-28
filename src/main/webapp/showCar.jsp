@@ -1,11 +1,34 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+	<%@include file="/public/head_fore.jspf"%>
 	<%@include file="/public/head.jspf"%>
-	<link rel="stylesheet" href="${shop}/css/public.css" />
-	<link rel="stylesheet" href="${shop}/css/style.css" />
+<script type="text/javascript">
+	$(function(){
+		//注册事件,验证事件的有效性
+		$(".text").change(function(){
+			//验证数据的有效性,必须是自然数
+			var number=this.value;
+			if(!isNaN(number)&&parseInt(number)==number&&number>0){//isNaN 如果是数字返回假   
+				//更新合法数据的值
+				$(this).attr("lang",number);
+				//发送ajax请求,传输当前的数量与商品ID,返回总价格
+			/* 	alert($(this).parents("tr:first").attr("lang")); */
+				$.post("sorder_updateSorder.action",{snumber:number,'product.pid':$(this).parents("tr:first").attr("lang")},function(total){
+					//更新总价
+					$("#total").html(total);
+				},"json");
+				//更新单个商品小计
+				$(this).parent().next().html($(this).parent().prev().html()*number);
+			}else{
+				this.value=$(this).attr("lang");
+			}
+		});
+	});
+</script>
 <body>
 	<div class="wrapper">
 		<div class="header">
@@ -114,7 +137,7 @@
 						<th class="align_center" width="10%">删除</th>
 					</tr>
 					<c:forEach items="${sessionScope.forder.sorders }" var="sorder">
-					<tr>
+					<tr lang="${sorder.product.pid }">
 						<td class="align_center"><a href="#" class="edit">${sorder.product.pid }</a>
 						</td>
 						<td width="80px"><img src="images/cart1.jpg" width="80"
@@ -122,14 +145,12 @@
 						</td>
 						<td class="align_left"><a class="pr_name" href="#">${sorder.product.pname }</a>
 						</td>
-						<td class="align_center vline"><span class="price">￥${sorder.product.price }</span>
+						<td class="align_center vline">${sorder.product.price }
 						</td>
 						<td class="align_center vline">
-							<div class="wrap-input">
-								<input class="text" style="height: 20px;" value="${sorder.snumber }">		
-							</div>
+							<input class="text" style="height: 20px;" value="${sorder.snumber }" lang="${sorder.snumber }" >		
 						</td>
-						<td class="align_center vline"><span class="price">￥${sorder.product.price }</span>
+						<td class="align_center vline"><span class="price">${sorder.snumber*sorder.sprice }</span>
 						</td>
 						<td class="align_center vline"><a href="#" class="remove"></a>
 						</td>
@@ -156,7 +177,7 @@
 							<tr>
 								<td width="60%" colspan="1" class="align_left total"><strong>总计</strong>
 								</td>
-								<td class="align_right" style=""><span class="total"><strong>￥${sessionScope.forder.ftotal }</strong>
+								<td class="align_right" style=""><span class="total">￥<strong id="total">${sessionScope.forder.ftotal }</strong>
 								</span>
 								</td>
 							</tr>

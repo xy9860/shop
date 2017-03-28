@@ -2,6 +2,7 @@ package com.xy9860.shop.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import com.xy9860.shop.model.Forder;
 import com.xy9860.shop.model.Product;
 import com.xy9860.shop.model.Sorder;
 import com.xy9860.shop.service.SorderService;
@@ -18,5 +19,16 @@ public class SorderServiceImpl extends BaseServiceImpl<Sorder> implements Sorder
 		sorder.setSprice(product.getPrice());
 		return sorder;
 	}
+
+	public Forder updateSorder(int pid, int snumber, Forder forder) {
+		// TODO Auto-generated method stub
+		for (Sorder temp : forder.getSorders()) {
+			if (temp.getProduct().getPid().equals(pid)) {
+				temp.setSnumber(snumber);
+			}
+		}
+		return forder;
+	}
+
 
 }

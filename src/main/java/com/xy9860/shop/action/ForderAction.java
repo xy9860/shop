@@ -35,4 +35,5 @@ public class ForderAction extends BaseAction<Forder> {
 		model=(Forder)session.get("forder");
 		return  model;//这里重写getmodel 让ognl的顶层直接就是session中的forder
 	}
+	
 }
