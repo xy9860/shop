@@ -20,7 +20,7 @@
         <property name="fdate" type="timestamp">
             <column name="fdate" length="19" />
         </property>
-        <property name="ftotal" type="java.lang.Double">
+        <property name="ftotal" type="java.math.BigDecimal">
             <column name="ftotal" precision="8" />
         </property>
         <property name="fpost" type="string">

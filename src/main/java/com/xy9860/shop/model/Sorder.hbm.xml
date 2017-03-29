@@ -11,7 +11,7 @@
         <property name="sname" type="string">
             <column name="sname" length="20" />
         </property>
-        <property name="sprice" type="java.lang.Double">
+        <property name="sprice" type="java.math.BigDecimal">
             <column name="sprice" precision="8" />
         </property>
         <property name="snumber" type="int">

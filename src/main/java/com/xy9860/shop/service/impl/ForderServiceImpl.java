@@ -1,11 +1,11 @@
 package com.xy9860.shop.service.impl;
 
+import java.math.BigDecimal;
 import java.util.Iterator;
 
 import org.springframework.stereotype.Service;
 
 import com.xy9860.shop.model.Forder;
-import com.xy9860.shop.model.Product;
 import com.xy9860.shop.model.Sorder;
 import com.xy9860.shop.service.ForderService;
 
@@ -38,10 +38,11 @@ public class ForderServiceImpl extends BaseServiceImpl<Forder> implements Forder
 		return forder;
 	}
 	
-	public double cluTotal(Forder forder){
-		double total=0;
+	public BigDecimal cluTotal(Forder forder){
+		BigDecimal total=new BigDecimal(0.00);
 		for (Sorder sorder : forder.getSorders()) {
-			total+=sorder.getSprice()*sorder.getSnumber();
+			total=total.add(sorder.getSprice().multiply(new BigDecimal(sorder.getSnumber())));
+			
 		}
 		return total;
 	}

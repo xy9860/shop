@@ -1,6 +1,7 @@
 package com.xy9860.shop.model;
 // Generated 2017-3-22 11:18:04 by Hibernate Tools 5.2.1.Final
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,124 +16,97 @@ public class Forder implements java.io.Serializable {
 	private String fphone;
 	private String fremark;
 	private Date fdate;
-	private Double ftotal;
+	private BigDecimal ftotal;
 	private String fpost;
 	private String faddress;
 	private Status status;
 	private User user;
 	private Set<Sorder> sorders=new HashSet<Sorder>();//记得创建实体
 	
-
-	@Override
-	public String toString() {
-		return "Forder [ fname=" + fname + ", fphone=" + fphone + ", fremark=" + fremark + ", fdate="
-				+ fdate + ", ftotal=" + ftotal + ", fpost=" + fpost + ", faddress=" + faddress + ", status=" + status
-				+ ", user=" + user + ", sorders=" + sorders + "]";
-	}
-
 	public Forder() {
+		super();
 	}
-
-	public Forder(String fname, String fphone, String fremark, Date fdate, Double ftotal, String fpost,
-			String faddress) {
-		this.fname = fname;
-		this.fphone = fphone;
-		this.fremark = fremark;
-		this.fdate = fdate;
-		this.ftotal = ftotal;
-		this.fpost = fpost;
-		this.faddress = faddress;
-	}
-
-
-
 	public Integer getFid() {
 		return fid;
 	}
-
 	public void setFid(Integer fid) {
 		this.fid = fid;
 	}
-
 	public String getFname() {
-		return this.fname;
+		return fname;
 	}
-
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
-
 	public String getFphone() {
-		return this.fphone;
+		return fphone;
 	}
-
 	public void setFphone(String fphone) {
 		this.fphone = fphone;
 	}
-
 	public String getFremark() {
-		return this.fremark;
+		return fremark;
 	}
-
 	public void setFremark(String fremark) {
 		this.fremark = fremark;
 	}
-
 	public Date getFdate() {
-		return this.fdate;
+		return fdate;
 	}
-
 	public void setFdate(Date fdate) {
 		this.fdate = fdate;
 	}
-
-	public Double getFtotal() {
-		return this.ftotal;
+	public BigDecimal getFtotal() {
+		return ftotal;
 	}
-
-	public void setFtotal(Double ftotal) {
+	public void setFtotal(BigDecimal ftotal) {
 		this.ftotal = ftotal;
 	}
-
 	public String getFpost() {
-		return this.fpost;
+		return fpost;
 	}
-
 	public void setFpost(String fpost) {
 		this.fpost = fpost;
 	}
-
 	public String getFaddress() {
-		return this.faddress;
+		return faddress;
 	}
-
 	public void setFaddress(String faddress) {
 		this.faddress = faddress;
 	}
-
 	public Status getStatus() {
 		return status;
 	}
-
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-
 	public User getUser() {
 		return user;
 	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 	public Set<Sorder> getSorders() {
 		return sorders;
 	}
-
+	@Override
+	public String toString() {
+		return "Forder [fid=" + fid + ", fname=" + fname + ", fphone=" + fphone + ", fremark=" + fremark + ", fdate="
+				+ fdate + ", ftotal=" + ftotal + ", fpost=" + fpost + ", faddress=" + faddress + "]";
+	}
 	public void setSorders(Set<Sorder> sorders) {
 		this.sorders = sorders;
 	}
-
-
+	public Forder(String fname, String fphone, String fremark, Date fdate, BigDecimal ftotal, String fpost,
+			String faddress) {
+		super();
+		this.fname = fname;
+		this.fphone = fphone;
+		this.fremark = fremark;
+		this.fdate = fdate;
+		this.ftotal = ftotal;
+		this.fpost = fpost;
+		this.faddress = faddress;
+	}
+	
 }

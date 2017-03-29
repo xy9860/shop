@@ -20,9 +20,11 @@
 				$.post("sorder_updateSorder.action",{snumber:number,'product.pid':$(this).parents("tr:first").attr("lang")},function(total){
 					//更新总价
 					$("#total").html(total);
-				},"json");
+				},"text");
 				//更新单个商品小计
-				$(this).parent().next().html($(this).parent().prev().html()*number);
+				var pice=$(this).parent().prev().html()*number;
+				//保留两位小数
+				$(this).parent().next().html(pice.toFixed(2));
 			}else{
 				this.value=$(this).attr("lang");
 			}

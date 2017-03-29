@@ -1,4 +1,7 @@
 package com.xy9860.shop.model;
+
+import java.math.BigDecimal;
+
 // Generated 2017-3-22 11:18:04 by Hibernate Tools 5.2.1.Final
 
 /**
@@ -25,7 +28,7 @@ public class Sorder implements java.io.Serializable {
 
 	private Integer sid;
 	private String sname;
-	private Double sprice;
+	private BigDecimal sprice;
 	private int snumber;
 	private Forder forder;
 	private Product product;
@@ -37,7 +40,7 @@ public class Sorder implements java.io.Serializable {
 		this.snumber = snumber;
 	}
 
-	public Sorder(String sname, Double sprice, int snumber ){
+	public Sorder(String sname, BigDecimal sprice, int snumber ){
 		this.sname = sname;
 		this.sprice = sprice;
 		this.snumber = snumber;
@@ -59,11 +62,11 @@ public class Sorder implements java.io.Serializable {
 		this.sname = sname;
 	}
 
-	public Double getSprice() {
+	public BigDecimal getSprice() {
 		return this.sprice;
 	}
 
-	public void setSprice(Double sprice) {
+	public void setSprice(BigDecimal sprice) {
 		this.sprice = sprice;
 	}
 
