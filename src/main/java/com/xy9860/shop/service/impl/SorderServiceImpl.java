@@ -14,7 +14,7 @@ public class SorderServiceImpl extends BaseServiceImpl<Sorder> implements Sorder
 
 	public Sorder getByPid(int pid) {
 		Sorder sorder=new Sorder();
-		Product product=getSession().get(Product.class, pid);
+		Product product=productDao.get(pid);
 		sorder.setProduct(product);
 		sorder.setSname(product.getPname());
 		sorder.setSnumber(1);
@@ -33,11 +33,7 @@ public class SorderServiceImpl extends BaseServiceImpl<Sorder> implements Sorder
 	}
 
 	public List<Object> querySale(int number) {
-		String hql="SELECT s.sname , sum(s.snumber)FROM Sorder s LEFT JOIN s.product GROUP BY s.product.pid";
-		return getSession().createQuery(hql)
-				.setFirstResult(0)
-				.setMaxResults(number)
-				.list();
+		return sorderDao.querySale(number);
 	}
 
 

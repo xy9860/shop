@@ -1,33 +1,39 @@
-package com.xy9860.shop.service.impl;
+package com.xy9860.shop.dao.impl;
 
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-import com.xy9860.shop.model.Category;
+import com.xy9860.shop.dao.ProductDao;
 import com.xy9860.shop.model.Product;
-import com.xy9860.shop.service.ProductService;
 
-@Service("productService")
-public class ProductServiceImpl extends BaseServiceImpl<Product> implements ProductService {
+@Repository("productDao")
+public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao {
 	public List<Product> queryJoinCategory(String pname, int page, int rows) {
 		//两次级联 需要查两次 不然就会报 no session 异常
 		//String hql="FROM Product p LEFT JOIN FETCH p.category.account JOIN FETCH p.category WHERE p.pname like ?";//这个多次懒依赖
-		return productDao.queryJoinCategory(pname, page, rows);
+		String hql="FROM Product p LEFT JOIN FETCH  p.category LEFT JOIN FETCH p.category.account WHERE p.pname like ?";
+		return getSession().createQuery(hql).setParameter(0, "%"+pname+"%").setFirstResult((page-1)*rows).setMaxResults(rows).list();
 	}
 
 	public Long getCount(String pname) {
-		return productDao.getCount(pname);
+		String hql="SELECT count(p) FROM Product p WHERE p.pname like ?";
+		return (Long)getSession().createQuery(hql).setParameter(0, "%"+pname+"%").uniqueResult();
 	}
 	
 	public void deleteByIds(String ids) {
 		// TODO Auto-generated method stub
-		productDao.deleteByIds(ids);
+		String hql="DELETE FROM Product WHERE id IN ("+ids+")";
+		getSession().createQuery(hql).executeUpdate();
 	}
 	
 	public List<Product> queryByCid(int cid) {
-		return productDao.queryByCid(cid);
+		String hql="FROM Product p INNER JOIN FETCH p.category WHERE p.pcommend=true AND p.popen=true AND p.category.cid=? ORDER BY p.pdate DESC";
+		return getSession().createQuery(hql)
+				.setParameter(0, cid)
+				.setFirstResult(0).setMaxResults(4)
+				.list();
 	}
 /*
 	public List<Category> queryJoinAccount(String ctype, int page, int rows) {

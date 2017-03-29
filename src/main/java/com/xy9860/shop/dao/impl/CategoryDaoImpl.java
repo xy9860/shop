@@ -1,37 +1,44 @@
-package com.xy9860.shop.service.impl;
+package com.xy9860.shop.dao.impl;
 
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
+import com.xy9860.shop.dao.CategoryDao;
 import com.xy9860.shop.model.Category;
-import com.xy9860.shop.service.CategoryService;
 
-@Service("categoryService")//不需要父类的标签
-public class CategoryServiceImpl extends BaseServiceImpl<Category> implements CategoryService {
+@Repository("categoryDao")//不需要父类的标签
+public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDao {
 
 	public List<Category> queryJoinAccount(String ctype, int page, int rows) {
 		/*return getSession().createQuery("FROM Category c LEFT JOIN FETCH c.account WHERE c.type like ?")
 				.setParameter(0, "%"+type+"%").list();*///没有分页的写法
-		return categoryDao.queryJoinAccount(ctype, page, rows);
+		String hql="FROM Category c LEFT JOIN FETCH c.account WHERE c.ctype like ?";
+		return getSession().createQuery(hql).setParameter(0, "%"+ctype+"%").setFirstResult((page-1)*rows).setMaxResults(rows).list();
 		//显示分页
 		//加入FETCH 让他抓取后 将结果集 放进 Account
 		//return getSession().createQuery("from Category").list();
 	}
 
 	public Long getCount(String ctype) {
-		
-		return categoryDao.getCount(ctype);
+		String hql="SELECT count(c) FROM Category c WHERE c.ctype like ?";
+		return (Long)getSession().createQuery(hql).setParameter(0, "%"+ctype+"%").uniqueResult();
 	}
 
 	public void deleteByIds(String ids) {
 		// TODO Auto-generated method stub
-		categoryDao.deleteByIds(ids);
+		String hql="DELETE FROM Category WHERE id IN ("+ids+")";
+		getSession().createQuery(hql).executeUpdate();
 	}
 
 	public List<Category> queryByChot(boolean chot) {
-		return categoryDao.queryByChot(chot);
+		String hql="FROM Category c  WHERE c.chot = ?";
+		return getSession().createQuery(hql)
+				.setParameter(0, chot)
+				.setFirstResult(0)
+				.setMaxResults(3)
+				.list();
 	}
 	
 	
