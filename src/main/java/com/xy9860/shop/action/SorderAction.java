@@ -1,10 +1,12 @@
 package com.xy9860.shop.action;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.xy9860.shop.model.Forder;
 import com.xy9860.shop.model.Sorder;
 
@@ -33,4 +35,11 @@ public class SorderAction extends BaseAction<Sorder> {
 		inputStream=new ByteArrayInputStream(forder.getFtotal().toString().getBytes());
 		return "stream";
 	}
+	
+	public String querySale(){
+		List<Object> jsonList=sorderService.querySale(model.getSnumber());
+		ActionContext.getContext().getValueStack().push(jsonList);//扔到栈顶,在json转换的时候会自动读取栈顶的数据
+		return "jsonList";
+	}
+	
 }

@@ -73,6 +73,9 @@
 				<result name="stream" type="stream">
 					<param name="inputName">inputStream</param>
 				</result>
+				<result name="jsonList" type="json">
+					
+				</result>
 			</action>
 			<action name="forder_*" class="forderAction" method="{1}">
 				<result name="bank" type="redirect">/user/bank.jsp</result>

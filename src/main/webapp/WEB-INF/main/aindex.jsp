@@ -68,10 +68,16 @@
 					<li><a href="#" title="send_product_query.action" id="product">商品管理</a></li>
 				</ul>
 			</div>
+			<div title="其他操作">
+				<ul>
+					<li><a href="#" title="send_sale_sale.action" id="product">销售管理</a></li>
+					<!-- <li><a href="#">用户管理</a></li> -->
+				</ul>
+			</div>
 			<div title="高级操作">
 				<ul>
-					<li><a href="#">类别管理</a></li>
-					<li><a href="#">商品管理</a></li>
+					<li><a href="#">权限管理</a></li>
+					<li><a href="#">用户管理</a></li>
 				</ul>
 			</div>
 		</div>

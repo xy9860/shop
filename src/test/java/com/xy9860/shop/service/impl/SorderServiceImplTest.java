@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.xy9860.shop.model.Sorder;
 import com.xy9860.shop.service.SorderService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:applicationContext.xml")
@@ -22,6 +23,13 @@ public class SorderServiceImplTest {
 		Integer integer=1;
 		System.out.println(integer.hashCode());
 		System.out.println(sorderService.getByPid(1));
+	}
+	
+	@Test
+	public void testQuerySale() {
+		for (Object object : sorderService.querySale(5)) {
+			System.out.println(object);
+		}
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.xy9860.shop.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.xy9860.shop.model.Forder;
@@ -28,6 +30,14 @@ public class SorderServiceImpl extends BaseServiceImpl<Sorder> implements Sorder
 			}
 		}
 		return forder;
+	}
+
+	public List<Object> querySale(int number) {
+		String hql="SELECT s.sname , sum(s.snumber)FROM Sorder s LEFT JOIN s.product GROUP BY s.product.pid";
+		return getSession().createQuery(hql)
+				.setFirstResult(0)
+				.setMaxResults(number)
+				.list();
 	}
 
 
