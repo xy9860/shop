@@ -54,7 +54,7 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
     	<property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
-    
+    <!-- 这里可以使用 tx:annoe..-driven  方式启用注解  然后在业务层 添加注解的方式 进行添加注解 -->
     <tx:advice id="advice" transaction-manager="transactionManager">
     	<tx:attributes>
     		<!-- <tx:method name="save*" propagation="REQUIRED"/>
@@ -65,7 +65,7 @@
     </tx:advice>
     
     <aop:config>
-    	<aop:pointcut expression="execution(* com.xy9860.shop.service.impl.*.*(..))" id="pointcut"/>
+    	<aop:pointcut expression="execution(* com.xy9860.shop.*.impl.*.*(..))" id="pointcut"/>
     	<aop:advisor advice-ref="advice" pointcut-ref="pointcut"/>
     </aop:config>
  </beans>

@@ -9,7 +9,9 @@
 					<param name="inputName">inputStream</param>
 				</result>
 			</global-results>
-			
+			<!--<global-exception-mappings> 异常映射 
+				<exception-mapping result="" exception=""></exception-mapping>
+			</global-exception-mappings>-->
 			<action name="category_*"  method="{1}" class="categoryAction">
 				<!-- 先添加json包,然后继承json-default -->
 				<result name="jsonMap" type="json">
